@@ -1,0 +1,35 @@
+{% extends 'skeleton/skeleton.html' %}
+
+{% block myBody %}
+    <div class="request-form">
+        <form>
+            <div class="banner">
+                <h2>Create a Request</h2>
+            </div>
+            <br/>
+            <fieldset>
+                <legend>Request Form</legend>
+                <div class="colums">
+                    <div class="item">
+                        <input id="fname" type="text" name="fname" placeholder="Name" required/>
+                    </div>
+                    <div class="item">
+                        <input id="phone" type="tel" name="phone" placeholder="Contact No." required/>
+                    </div>
+                    <div class="item">
+                        <input id="saddress" type="text" name="city" placeholder="Address" required/>
+                    </div>
+                    <div class="item">
+                        <input id="hospital" type="text" name="hospital_name" placeholder="Hospital" required/>
+                    </div>
+                    <div class="item">
+                        <legend>Prescription:</legend>
+                        <input type="file" id="prescription" name="prescription" placeholder="Prescription" required/>
+                    </div>
+            </fieldset>
+            <div class="btn-block">
+                <button type="order" href="/">Confirm Request</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

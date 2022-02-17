@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Request Blood</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'home/css/style.css' %}">
+
+    {% block myStyle %}
+    {% endblock %}
+
+    <script src="https://kit.fontawesome.com/8fd9809be9.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+    <div class="wrapper">
+
+        {% include 'skeleton/sidebar.html' %}
+
+        <div class="main_content">
+            {% include 'skeleton/navbar.html' %}
+
+            {% block myBody %}
+            {% endblock %}
+        </div>
+    </div>
+
+    {% block myScript %}
+    {% endblock %}
+</body>
+
+</html>

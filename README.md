@@ -156,7 +156,7 @@ One look over this code and we can see some differences between ```skeleton.html
 a regular html file. There are many lines that has the symbol ```{% %}```. Let's
 analyze those specific lines one-by-one.
 
-#### Referencing a css file from inside html using {% static .. %}
+### Referencing a css file from inside html using {% static .. %}
 ```html
 {% load static %}
 <link rel="stylesheet" href="{% static 'home/css/style.css' %}">
@@ -166,7 +166,7 @@ directory > ```home/css/```.
 - Include that css file as a stylesheet.
 
 
-#### Including code from another html file using {% include .. %}
+### Including code from another html file using {% include .. %}
 ```html
 <div class="wrapper">
 
@@ -175,15 +175,16 @@ directory > ```home/css/```.
 </div>
 ```
 
-- The syntax ```{% include <file_name> %}``` is used to tell django, that we want to 
-**replace this line with all the contents of** ```file_name```. Say from the above
+- The syntax ```{% include .. %}``` is used to  
+**replace this line the contents of** a file. Say from the above
 example, ```sidebar.html```:
+
 ```html
 <p>Hello</p>
 <p>World</p>
 ``` 
 
-- Then, the first bit of codes would become
+- Then, the resulting code would become
 ```html
 <div class="wrapper">
 
@@ -194,7 +195,7 @@ example, ```sidebar.html```:
 ```
 
 
-#### Creating empty _pockets_ using {% block .. %}
+### Creating empty _pockets_ using {% block .. %}
 I'm using the term _pocket_, which might not make any sense as of now, but hopefully
 will be clear when we create other html pages __extending__ from  ```skeleton.html```. \
 For now, let's analyze these lines:
@@ -206,11 +207,9 @@ For now, let's analyze these lines:
     ...
 </div>
 ```
-- ```{% include 'skeleton/navbar.html' %}``` replaces this line of code with 
-contents from ```skeleton/navbar.html```
 - ```{% block myBody %}{% endblock %}``` creates a __pocket__ in this file
 
-#### Using these _pockets_ with {% extends .. %}
+### Using these _pockets_ with {% extends .. %}
 Now that we have created a ```skeleton.html``` with some empty _pockets_, we can
 create other html files. Say, we want to create a home page ```homepage.html```:
 ```html

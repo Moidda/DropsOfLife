@@ -1,0 +1,31 @@
+{% extends 'skeleton/skeleton.html' %}
+
+{% block myBody %}
+<h1>User Profile ... (To be edited)</h1>
+<h2>List of Users with diseases</h2>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Disease</th>
+    </tr>
+
+    {% for entry in user_disease %}
+    <tr>
+        <td>{{ entry.name }}</td>
+        <td>{{ entry.disease }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<table>
+    <tr>
+        <th>Available Donors</th>
+    </tr>
+
+    {% for u in valid_donors %}
+    <tr>
+        <td>{{ u.name }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

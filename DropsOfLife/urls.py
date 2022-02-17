@@ -23,6 +23,7 @@ urlpatterns = [
     path('', include('home.urls')),
     path('polls/', include('polls.urls')),
     path('createRequest/', include('Requester.createRequest.urls')),
+    path('profile/', include('user.urls')),
 ]
 
 

@@ -2,7 +2,8 @@
 
 {% block myBody %}
     <div class="request-form">
-        <form>
+        <form action="{% url 'createRequest:processRequest' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
             <div class="banner">
                 <h2>Create a Request</h2>
             </div>
@@ -28,7 +29,7 @@
                     </div>
             </fieldset>
             <div class="btn-block">
-                <button type="order" href="/">Confirm Request</button>
+                <button type="order" href="{% url 'createRequest:processRequest' %}">Confirm Request</button>
             </div>
         </form>
     </div>

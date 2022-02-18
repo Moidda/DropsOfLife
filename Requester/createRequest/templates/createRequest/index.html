@@ -20,6 +20,9 @@
                     <div class="item">
                         <input id="saddress" type="text" name="city" placeholder="Address" required/>
                     </div>
+
+                    <div id="googleMap" style="margin:auto;width:40%;height:400px;"></div>
+
                     <div class="item">
                         <input id="hospital" type="text" name="hospital_name" placeholder="Hospital" required/>
                     </div>
@@ -33,4 +36,43 @@
             </div>
         </form>
     </div>
+{% endblock %}
+
+
+{% block myScript %}
+<script>
+    function myMap() {
+
+        const myLatLng = {
+            lat: 23.7461,
+            lng: 90.3742
+        };
+
+        var mapProp = {
+            center: myLatLng,
+            zoom: 17,
+        };
+
+        var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+
+        var marker = new google.maps.Marker({
+            position: myLatLng,
+            animation: google.maps.Animation.DROP
+        });
+
+        marker.setDraggable(true);
+        marker.setClickable(true);
+        marker.setMap(map);
+
+        marker.addListener('position_changed', printMarkerLocation);
+
+        function printMarkerLocation() {
+            var pos = 'Lat: ' + marker.position.lat() + ' Lng:' + marker.position.lng();
+            console.log(pos);
+            document.getElementById("saddress").value = pos
+        }
+    }
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzH5qc_mytBR1OydCEd87eKZ-_u-fP8sQ&callback=myMap"></script>
 {% endblock %}

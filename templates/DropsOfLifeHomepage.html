@@ -1,0 +1,215 @@
+{% extends 'skeleton.html' %}
+{% load static %}
+{% block main %}
+<div class="pagetitle">
+    <h1>Suggested Blood Banks</h1>
+    <nav>
+    </nav>
+</div>
+<!-- End Page Title -->
+<section class="section dashboard">
+    <div class="row">
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                <a href="#">Bangladesh Red Crescent Society </a>
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">4.7k Members</div>
+                            <br>
+                            <div style="margin:auto";>
+                                <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Join Group</a>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body" style="color:#33475b">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                <a href="#">Badhan Blood Bank Society</a>
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">20k Members</div>
+                            <br>
+                            <div style="margin:auto";>
+                                <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Join Group</a>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><a href="#">Sandhani Blood Bank Society</a>
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">8.9k Members</div>
+                            <br>
+                            <div style="margin:auto";>
+                                <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Join Group</a>
+                            </div>
+                        </div>
+                        <div class="row no-gutters align-items-center">
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Pending Requests Card -->
+    <div class="col-xl-6 col-md-6 mb-4">
+        <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                            Pending Requests
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-comments fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- Recent Requests -->
+    <div class="col-12">
+        <div class="card recent-sales overflow-auto">
+            <div class="card-body">
+                <h5 class="card-title">Recent Requests</h5>
+                <table class="table table-borderless datatable">
+                    <thead>
+                        <tr>
+                            <th scope="col">Urgency</th>
+                            <th scope="col">Requestee</th>
+                            <th scope="col">Location</th>
+                            <th scope="col">Blood Group</th>
+                            <th scope="col">Prescription</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Respond</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for r in request_immediate %}
+                        <tr bgcolor="#f7dad5">
+                            <th scope="row">{{ r.urgency }}</th>
+                            <td>{{ r.name }}</td>
+                            <td><a href="#" class="text-primary">{{ r.hospital }},{{ r.address }}</a></td>
+                            <td>{{ r.blood_type }}</td>
+                            <td><a href="{{ r.prescription_link }}">See Prescription</a></td>
+                            <td><span class="badge bg-danger">Pending</span></td>
+                            <td><a href="#"><span class="badge bg-respond">Respond</span></a></td>
+                        </tr>
+                        {% endfor %}
+
+                        {% for r in request_standby %}
+                        <tr bgcolor="powderblue">
+                            <th scope="row">{{ r.urgency }}</th>
+                            <td>{{ r.name }}</td>
+                            <td><a href="#" class="text-primary">{{ r.hospital }},{{ r.address }}</a></td>
+                            <td>{{ r.blood_type }}</td>
+                            <td><a href="{{ r.prescription_link }}">See Prescription</a></td>
+                            <td><span class="badge bg-danger">Pending</span></td>
+                            <td><a href="#"><span class="badge bg-respond">Respond</span></a></td>
+                        </tr>
+                        {% endfor %}
+
+                        {% for r in request_longterm %}
+                        <tr bgcolor="#fff2cc">
+                            <th scope="row">{{ r.urgency }}</th>
+                            <td>{{ r.name }}</td>
+                            <td><a href="#" class="text-primary">{{ r.hospital }},{{ r.address }}</a></td>
+                            <td>{{ r.blood_type }}</td>
+                            <td><a href="{{ r.prescription_link }}">See Prescription</a></td>
+                            <td><span class="badge bg-danger">Pending</span></td>
+                            <td><a href="#"><span class="badge bg-respond">Respond</span></a></td>
+                        </tr>
+                        {% endfor %}
+
+                        <tr bgcolor="#f7dad5">
+                            <th scope="row">Immediate</th>
+                            <td>Ashleigh Langosh</td>
+                            <td><a href="#" class="text-primary">Ibn Sina,Dhanmondi</a></td>
+                            <td>O-</td>
+                            <td><a href="media/Aj%20Chitrar%20Biye%20by%20Humayun%20Ahmed%20(BDeBooks.Com)_61dTfyd.pdf">See Prescription</a></td>
+                            <td><span class="badge bg-warning">Waiting</span></td>
+                            <td><a href="#"><span class="badge bg-respond">Respond</span></a></td>
+                        </tr>
+
+<!--                    Long Term     -->
+                        <tr bgcolor="#1aff66">
+                            <th scope="row">Long Term</th>
+                            <td>Angus Grady</td>
+                            <td><a href="#" class="text-primar">Popular Diagonostic Center,Mirpur</a></td>
+                            <td>AB+</td>
+                            <td></td>
+                            <td><span class="badge bg-success">Complete</span></td>
+                            <td><span class="badge bg-norespond">Respond</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- End Recent Sales -->
+    <!-- Right side columns -->
+    <!--        News and updates   -->
+    <div class="col-lg-12">
+        <!-- News & Updates Traffic -->
+        <div class="card">
+            <div class="card-body pb-0">
+                <h5 class="card-title">News &amp; Updates</h5>
+                <div class="news">
+                    <div class="post-item clearfix">
+                        <img src="{% static 'assets/img/messages-3.jpg' %}" alt="">
+                        <h4><a href="#">Mehedi Hasan</a></h4>
+                        <p><a href="#">Mehedi Hasan provided a feedback to your last blood donation</a></p>
+                    </div>
+                    <div class="post-item clearfix">
+                        <img src="{% static 'assets/img/mahdi.png' %}" alt="">
+                        <h4><a href="#">Mahdi Buet 3</a></h4>
+                        <p><a href="#">Your friends next transfusion date is coming near</a></p>
+                    </div>
+                    <div class="post-item clearfix">
+                        <img src="{% static 'assets/img/donate2.jpg' %}" alt="">
+                        <h4><a href="#">Drops of Life</a></h4>
+                        <p><a href="#">You can donate blood in 14 days</a></p>
+                    </div>
+                    <div class="post-item clearfix">
+                        <img src="{% static 'assets/img/logo2.jpg' %}" alt="">
+                        <h4><a href="#">Drops of Life</a></h4>
+                        <p><a href="#">Your next transfusion date is in next week</a></p>
+                    </div>
+                    <div class="post-item clearfix">
+                        <img src="{% static 'assets/img/shafaet.png' %}" alt="">
+                        <h4><a href="#">Shafaet Zaman</a></h4>
+                        <p><a href="#">Shafaet Zaman has responded to your request</a></p>
+                    </div>
+                </div>
+                <!-- End sidebar recent posts-->
+            </div>
+        </div>
+        <!-- End News & Updates -->
+    </div>
+    <!-- End Right side columns -->
+    </div>
+</section>
+{% endblock %}

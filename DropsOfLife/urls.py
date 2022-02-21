@@ -24,7 +24,7 @@ urlpatterns = [
     path('polls/', include('polls.urls')),
     path('createRequest/', include('Requester.createRequest.urls')),
     path('profile/', include('user.urls')),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
 if settings.DEBUG:

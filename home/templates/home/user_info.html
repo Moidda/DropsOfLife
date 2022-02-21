@@ -1,0 +1,35 @@
+{% extends 'skeleton/skeleton.html' %}
+
+{% block myBody %}
+<form action="{% url 'home:createUser' %}" method="post">
+    {% csrf_token %}
+
+    <label for="birthday">Birthday:</label>
+    <input type="date" id="birthday" name="birthday">
+
+    <label for="donationDate">Last Date of Donation:</label>
+    <input type="date" id="donationDate" name="donationDate">
+
+<!--    gender-->
+    <label for="gender">Gender:</label><br>
+    <input type="text" id="gender" name="gender"><br>
+<!--    bloodType-->
+    <label for="bloodType">Gender:</label><br>
+    <input type="text" id="bloodType" name="bloodType"><br>
+<!--    address-->
+    <label for="address">Address:</label><br>
+    <input type="text" id="address" name="address"><br>
+<!--    isDonor-->
+    <input type="radio" id="isDonor" name="isDonor" value="isDonor">
+<!--    phone-->
+    <label for="phone">Phone:</label><br>
+    <input type="text" id="phone" name="phone"><br>
+<!--    email-->
+    <label for="email">Email:</label><br>
+    <input type="text" id="Email" name="Email"><br>
+<!--    donationCount-->
+<!--    diseases-->
+
+    <input type="submit" value="Submit">
+</form>
+{% endblock %}

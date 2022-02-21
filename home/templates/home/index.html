@@ -9,6 +9,20 @@
         <div>
             New bullshit in town
         </div>
+
+        <h2>Requests</h2>
+        <ul>
+            {% for r in rqst %}
+            <li>Name:       {{ r.name }}</li>>
+            <li>Phone:      {{ r.phone }}</li>>
+            <li>Address:    {{ r.address }}</li>>
+            <li>Hospital:   {{ r.hospital }}</li>>
+            <li>Blood Type: {{ r.blood_type }}</li>>
+            <li>Urgency:    {{ r.urgency }}</li>>
+            <li>Date:       {{ r.pub_date }}</li>>
+            <li>Prescription: {{ r.prescription_link }}</li>>
+            {% endfor %}
+        </ul>
     </div>
 
 {% endblock %}

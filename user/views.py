@@ -1,4 +1,6 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+
+import DropsOfLife.settings
 from .models import User, Disease
 from datetime import datetime
 
@@ -6,6 +8,8 @@ from datetime import datetime
 
 
 def index(request):
+    context = {}
+
     user_disease = []
     valid_donors = []
     diseases = Disease.objects.all()
@@ -21,8 +25,7 @@ def index(request):
         if delta.days > 40 and d.isDonor:
             valid_donors.append({'name': d.name})
 
-    context = {
-        'user_disease': user_disease,
-        'valid_donors': valid_donors
-    }
+    context['user_disease'] = user_disease
+    context['valid_donors'] = valid_donors
+
     return render(request, 'user/index.html', context)

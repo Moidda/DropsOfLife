@@ -13,11 +13,10 @@ class Disease(models.Model):
 
 
 class User(models.Model):
-    id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=100)
-    password = models.CharField(max_length=50)
+    password = models.CharField(max_length=50, blank=True)
     dateOfBirth = models.DateField('Date of Birth')
-    lastDateOfDonation = models.DateTimeField('Last Donation date')
+    lastDateOfDonation = models.DateTimeField('Last Donation date', blank=True)
     gender = models.CharField(max_length=20)
     bloodType = models.CharField(max_length=10)
     address = models.CharField(max_length=200)

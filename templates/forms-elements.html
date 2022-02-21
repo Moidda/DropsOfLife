@@ -1,0 +1,241 @@
+{% extends 'skeleton.html' %}
+{% block main %}
+<div class="pagetitle">
+    <h1>Blood Request Form</h1>
+    <nav></nav>
+</div>
+<!-- End Page Title -->
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Fill up the required fields</h5>
+                    <!-- General Form Elements -->
+                    <form method="post" action="{% url 'createRequest:processRequest' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label required">Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="name" id="name" required/>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label required">Blood Type</label>
+                            <div class="col-sm-10">
+                                <select class="form-select" aria-label="Default select example" name="blood_type" id="blood_type" required>
+                                <!--                      <option selected>Select Blood Group</option>-->
+                                <option value="A+">A+</option>
+                                <option value="A">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label">Email</label>
+                            <div class="col-sm-10">
+                                <input type="email" class="form-control" name="email" id="email">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label required">Contact no</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="phone" id="phone" required/>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label required">Address</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="address" name="address" required/>
+                            </div>
+                        </div>
+                        <div class="row mb-3" id="googleMap" style="margin-left:auto;margin-right:0;width:80%;height:400px;">
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label">Hospital</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="hospital" id="hospital">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label required">Prescription Upload</label>
+                            <div class="col-sm-10">
+                                    <input type="file" id="prescription" name="prescription" placeholder="Prescription" required/>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label required">Required Within</label>
+                            <div class="col-sm-10">
+                                <input type="date" class="form-control" name="required_date" id="required_date" required>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label">Time</label>
+                            <div class="col-sm-10">
+                                <input type="time" class="form-control" name="required_time" id="required_time">
+                            </div>
+                        </div>
+                        <fieldset class="row mb-3">
+                            <legend class="col-form-label col-sm-2 pt-0 required">Request Urgency</legend>
+                            <div class="col-sm-10">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="Immediate" checked>
+                                    <label class="form-check-label" for="gridRadios1">
+                                        Immediate(2-24 hours)
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="Stand By">
+                                    <label class="form-check-label" for="gridRadios2">
+                                        Stand By(24-48 hours)
+                                    </label>
+                                </div>
+                                <div class="form-check disabled">
+                                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="Long Term">
+                                    <label class="form-check-label" for="gridRadios3">
+                                        Long Term
+                                    </label>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label">Add Note</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" style="height: 100px" name="note" id="note"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-3" >
+                            <label class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <button type="submit" class="btn btn-primary-submit" style="margin:auto">Confirm Request</button>
+<!--                                <input type=button class="btn btn-primary-submit" onClick="processRequest();" value="Confirm Request">-->
+                            </div>
+                        </div>
+                </form>
+                <!-- End General Form Elements -->
+            </div>
+        </div>
+    </div>
+    </form><!-- End General Form Elements -->
+    </div>
+    </div>
+    </div>
+    </div>
+</section>
+{% endblock %}
+
+
+{% block script %}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+
+<script>
+    function myMap() {
+        const myLatLng = {
+            lat: 23.807145,
+            lng: 90.363633
+        };
+        var mapProp = {
+            center: myLatLng,
+            zoom: 17,
+        };
+        var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+
+        var marker = new google.maps.Marker({
+            position: myLatLng,
+            animation: google.maps.Animation.DROP
+        });
+
+        marker.setDraggable(true);
+        marker.setClickable(true);
+        marker.setMap(map);
+        marker.addListener('position_changed', printMarkerLocation);
+
+        function printMarkerLocation() {
+            var pos = 'Lat: ' + marker.position.lat() + ' Lng:' + marker.position.lng();
+            console.log(pos);
+            document.getElementById("address").value = pos
+        }
+    }
+</script>
+
+<script>
+    function processRequest() {
+        var name = document.getElementById("name");
+        var phone = document.getElementById("phone");
+        var address = document.getElementById("address");
+        var hospital = document.getElementById("hospital");
+        var blood_type = document.getElementById("blood_type");
+        var prescription = document.getElementById("prescription");
+        var urgencyCollection = document.getElementsByName("gridRadios");
+        var urgency = "";
+        for(var i = 0; i < urgencyCollection.length; i++)
+            if(urgencyCollection[i].type == "radio" && urgencyCollection[i].checked)
+                urgency = urgencyCollection[i];
+
+        var date = document.getElementById("required_date");
+
+        if(name.value.length == 0) {
+            alert("Name field is required!!");
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+            return;
+        }
+        if(phone.value.length == 0) {
+            alert("Phone field is required!!");
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+            return;
+        }
+        if(address.value.length == 0) {
+            alert("Address field is required!!");
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+            return;
+        }
+        if(prescription.files.length == 0) {
+            alert("Prescription field is required!!");
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+            return;
+        }
+        var data =  "name: " + name.value + "\n" +
+                    "phone: " + phone.value + "\n" +
+                    "address: " + address.value + "\n" +
+                    "hospital: " + hospital.value + "\n" +
+                    "blood_type: " + blood_type.value + "\n" +
+                    "urgency: " + urgency.value + "\n" +
+                    "date: " + required_date.value + "\n"
+
+        window.location.href = "http://127.0.0.1:8000/createRequest/process/";
+
+<!--        $.ajax({-->
+<!--            url: "{% url 'createRequest:processRequest' %}",-->
+<!--            data: {-->
+<!--                'name': name.value,-->
+<!--                'phone': phone.value,-->
+<!--                'address': address.value,-->
+<!--                'hospital': hospital.value,-->
+<!--                'blood_type': blood_type.value,-->
+<!--                'urgency': urgency.value,-->
+<!--                'date': required_date.value-->
+<!--            },-->
+<!--            datatype: 'json',-->
+<!--            success: function(data) {-->
+<!--                alert("Request Successful! Checkout homepage");-->
+<!--            },-->
+<!--            error: function() {-->
+<!--                alert("Something went wrong. Reload the page");-->
+<!--            }-->
+<!--        });-->
+
+    }
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzH5qc_mytBR1OydCEd87eKZ-_u-fP8sQ&callback=myMap"></script>
+{% endblock %}

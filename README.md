@@ -1,4 +1,5 @@
 # Drops of Life
+# Working in django (A small walkthrough)
 
 ## Key Points
 - Each modules will be implemented using one or more **apps**
